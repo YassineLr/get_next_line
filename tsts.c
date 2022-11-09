@@ -6,7 +6,7 @@
 /*   By: ylarhris <ylarhris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:21:38 by ylarhris          #+#    #+#             */
-/*   Updated: 2022/11/09 02:13:02 by ylarhris         ###   ########.fr       */
+/*   Updated: 2022/11/09 03:36:02 by ylarhris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char *after_new_line(char *s, char *str)
 
 char *get_next_line(int fd)
 {
-    static char	*res[OPEN_MAX];
+    static char	*res;
     char		*line;
     char		*temp;
 	char 		*buff;
@@ -128,16 +128,16 @@ char *get_next_line(int fd)
 			return (NULL);
 		}
 		buff[readd] = '\0';
-		temp = res[fd];
-		res[fd] = ft_strjoin(temp, buff);
+		temp = res;
+		res = ft_strjoin(temp, buff);
 		free(temp);
 		free(buff);
-		if (ft_strchr(res[fd], '\n'))
+		if (ft_strchr(res, '\n'))
 			break;
 	}
-	line = till_new_line(res[fd], line);
-	temp = res[fd];
-	res[fd] = after_new_line(temp, res[fd]);
+	line = till_new_line(res, line);
+	temp = res;
+	res = after_new_line(temp, res);
 	free (temp);
 	if (!line)
 		return (NULL);
@@ -146,24 +146,14 @@ char *get_next_line(int fd)
 
 int mainw()
 {
-	int i = open("oppp.txt", O_RDONLY);
+	int i = open("opa.txt", O_RDONLY);
 	char *line = NULL;
 
-	line = get_next_line(i);
-	printf("%s\n", line);
-	free(line);
-	line = get_next_line(i);
-	printf("%s\n", line);
-	free(line);
-	line = get_next_line(i);
-	printf("%s\n", line);
-	free(line);
-	line = get_next_line(i);
-	printf("%s\n", line);
-	free(line);
-	line = get_next_line(i);
-	printf("%s\n", line);
-	free(line);
+	printf("%s", get_next_line(i));
+	printf("%s", get_next_line(i));
+	printf("%s", get_next_line(i));
+	printf("%s",get_next_line(i));
+
 	return (0);
 }
 
