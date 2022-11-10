@@ -20,9 +20,14 @@
 #include <limits.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE
+# define BUFFER_SIZE 12
 # endif
 
-
+size_t	ft_strlen(const char *str);
+char	*till_new_line(char *s, char *str);
+char	*ft_strchr(const char *str, int ch);
+char	*ft_strjoin(char *s1, char *s2);
+char	*after_new_line(char *s, char *str);
+char *get_next_line(int fd);
 
 # endif
