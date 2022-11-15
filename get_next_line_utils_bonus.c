@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarhris <ylarhris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 20:42:41 by ylarhris          #+#    #+#             */
-/*   Updated: 2022/11/14 04:03:26 by ylarhris         ###   ########.fr       */
+/*   Created: 2022/11/14 03:33:46 by ylarhris          #+#    #+#             */
+/*   Updated: 2022/11/14 03:33:59 by ylarhris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *str)
 {
@@ -53,24 +53,24 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (j_str);
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(char *src)
 {
-	int		s1_lenght;
-	char	*ptr;
-	int		i;
+	size_t		n;
+	size_t		i;
+	char		*dest;
 
-	s1_lenght = ft_strlen(s1);
-	ptr = (char *)malloc(s1_lenght * sizeof(char) + 1);
-	if (!ptr)
-		return (NULL);
 	i = 0;
-	while (s1[i])
+	n = ft_strlen(src) + 1;
+	dest = (char *)malloc (n * sizeof(char));
+	if (!dest)
+		return (NULL);
+	while (src[i])
 	{
-		ptr[i] = s1[i];
+		dest[i] = src[i];
 		i++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
+	dest[i] = '\0';
+	return (dest);
 }
 
 char	*ft_substr(char *s, int start, int len)

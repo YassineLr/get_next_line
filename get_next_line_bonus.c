@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarhris <ylarhris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 20:42:55 by ylarhris          #+#    #+#             */
-/*   Updated: 2022/11/14 03:12:32 by ylarhris         ###   ########.fr       */
+/*   Created: 2022/11/14 03:20:01 by ylarhris          #+#    #+#             */
+/*   Updated: 2022/11/14 03:32:29 by ylarhris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	check_new_line(char *str)
 {
@@ -86,15 +86,15 @@ char	*after_new_line(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*res;
+	static char	*res[OPEN_MAX];
 	char		*before;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	res = read_line(fd, res);
-	if (!res)
+	res[fd] = read_line(fd, res[fd]);
+	if (!res[fd])
 		return (NULL);
-	before = till_new_line(res);
-	res = after_new_line(res);
+	before = till_new_line(res[fd]);
+	res[fd] = after_new_line(res[fd]);
 	return (before);
 }
